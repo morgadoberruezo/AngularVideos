@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [LoginService]
 })
 export class LoginComponent {
   titulo:string = "Identifícate";
@@ -15,7 +18,10 @@ export class LoginComponent {
         "getHash": "false"
   };
 
-  constructor() { }
+  constructor(private _loginService: LoginService) {
+    console.log (_loginService.signup());
+
+  }
 
   guardar( forma:NgForm ) {
   //  this.user.email = this.email;
