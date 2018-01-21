@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { APP_ROUTING } from './app.routes';
+import { LoginService } from './services/login.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { APP_ROUTING } from './app.routes';
     HttpModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
