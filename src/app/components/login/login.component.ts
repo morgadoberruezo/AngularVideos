@@ -10,24 +10,68 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent {
   titulo:string = "Identifícate";
+  public errorMesage;
+  public token;
+  public identidad;
   //seteamos por defecto este objeto en el formulario
   //[ngModel]="user.email"
-  user:Object = {
+  public user = {
         "email" : "m@gmail.com",
-        "password" : "1234",
+        "pass" : "1234",
         "getHash": "false"
+        //si es false ---> se obtiene la identidad del usuario
+        //si es true ---> se obtiene el token
   };
 
   constructor(private _loginService: LoginService) {
-    console.log (_loginService.signup());
-
-  }
+    console.log(localStorage.getItem('identidad'));
+    console.log(localStorage.getItem('token'));
+   }
 
   guardar( forma:NgForm ) {
-  //  this.user.email = this.email;
-    console.log("objeto ngForm:",forma);
-    console.log("Valor:", forma.value);
-    console.log("usuario:", this.user);
+    this._loginService.signup(this.user)
+          .subscribe(
+            response => {
+              //gethash == false
+              this.identidad = response;
+              if (this.identidad.length <= 1){
+                console.log('error en token');
+              }else {
+                localStorage.setItem('identidad',JSON.stringify(this.identidad));
+                //console.log(localStorage.getItem('identidad'));
+                this.user.getHash = "true";
+                //lanzamos otra Http
+                this._loginService.signup(this.user)
+                      .subscribe(
+                        response => {
+                          this.token = response;
+                          if (this.token.length <= 0)
+                            console.log('error en token servidor')
+                          else {
+                            localStorage.setItem('token',JSON.stringify(this.token));
+
+                            //redirección
+                          }
+                        },
+                        error => {
+                          this.errorMesage = <any>error;
+                          if (this.errorMesage != null){
+                            console.log('Error en la petición');
+                            console.log(this.errorMesage);
+                          }
+                        }
+                      );
+              };
+
+            },
+            error    => {
+              this.errorMesage = <any>error;
+              if (this.errorMesage != null){
+                console.log('Error en la petición');
+                console.log(this.errorMesage);
+              }
+            }
+          )
 
   }
 

@@ -10,7 +10,6 @@ export class LoginService {
   constructor(private _http:Http) { }
 
   signup(user_login) {
-
     //la idea es hacer una petición Ajax (http) que nos deuvuelva
     //el hash correspondiente al usuario que intenta logearse
     let user_json:any = JSON.stringify(user_login);

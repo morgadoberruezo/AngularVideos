@@ -12,7 +12,6 @@ import { HomeComponent } from './components/home/home.component';
 import { APP_ROUTING } from './app.routes';
 import { LoginService } from './services/login.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
