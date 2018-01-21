@@ -11,6 +11,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { APP_ROUTING } from './app.routes';
 import { LoginService } from './services/login.service';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1de4019700adb719479662573fc6e2453f986247
 
 @NgModule({
   declarations: [

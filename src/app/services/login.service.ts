@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LoginService {
+<<<<<<< HEAD
   public url = "http://localhost/symfony/2018/videoclub/web/app_dev.php";
   constructor(private _http:Http) { }
 
@@ -21,4 +22,13 @@ export class LoginService {
     return (this._http.post(this.url+"/admin/login", params, {headers:headers})
                         .map(res => res.json()));
   }
+=======
+
+  constructor() { }
+
+  signup() {
+    return "Hola desde el servicio ...";
+  }
+
+>>>>>>> 1de4019700adb719479662573fc6e2453f986247
 }

@@ -24,9 +24,15 @@ export class LoginComponent {
   };
 
   constructor(private _loginService: LoginService) {
+<<<<<<< HEAD
     console.log(localStorage.getItem('identidad'));
     console.log(localStorage.getItem('token'));
    }
+=======
+    console.log (_loginService.signup());
+
+  }
+>>>>>>> 1de4019700adb719479662573fc6e2453f986247
 
   guardar( forma:NgForm ) {
     this._loginService.signup(this.user)
